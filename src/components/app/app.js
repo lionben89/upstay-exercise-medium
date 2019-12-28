@@ -1,12 +1,13 @@
+import ReservationsListCont from './reservations/reservations-list-container';
 import React from 'react';
 import SVGUpsay from './svg-upstay';
-import { Container, Welcome } from './app.style';
+import { Container } from './app.style';
 
 const App = () => {
 	return (
 		<Container>
-			<Welcome>Welcome to</Welcome>
 			<SVGUpsay />
+			<ReservationsListCont />
 		</Container>
 	);
 };

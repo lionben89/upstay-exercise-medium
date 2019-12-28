@@ -1,5 +1,6 @@
 import EventEmitter from 'events';
 import faker from 'faker';
+import * as reservationsTable from '@upstay/db/reservations';
 
 const emitter = new EventEmitter();
 const NEW_RESERVATION_EVENT = 'newReservation';
@@ -40,4 +41,14 @@ export const stop = () => {
 	clearTimeout(timeoutId);
 	running = false;
 	emitter.removeAllListeners(NEW_RESERVATION_EVENT);
+};
+
+export const getAllReservationsFromDB = async () => {
+	let res = await reservationsTable.getAllReservations();
+	return res;
+};
+
+export const addNewReservationToDB = async reservation => {
+	let res = await reservationsTable.addReservation(reservation);
+	return res;
 };

@@ -19,7 +19,11 @@ serverDev(app);
 
 // socket.io server
 const server = serverIO(app, socket => {
-	reservationsService.start(reservation => {});
+	reservationsService.start(reservation => {
+		reservationsService.addNewReservationToDB(reservation).then(result => {
+			socket.emit('newReservation', result);
+		});
+	});
 });
 
 server.listen(port, () => {
