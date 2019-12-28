@@ -1,0 +1,7 @@
+.app-container {
+	display: flex;
+	flex-direction: column;
+	.title {
+		align-self: center;
+	}
+}

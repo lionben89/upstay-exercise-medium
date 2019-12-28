@@ -7,7 +7,7 @@ export const addReservation = async reservation => {
 	let values = Object.values(reservation);
 	let queryString = `INSERT INTO ${TABLE_NAME} (id,${keys.toString()}) VALUES (nextval('reservations_id_seq'),${pgHelper.createChainVarString(
 		values.length
-	)}) RETURNING ${keys.toString()}`;
+	)}) RETURNING id,${keys.toString()}`;
 	let res = await query(queryString, values);
 	return res && res.rows && res.rows[0];
 };

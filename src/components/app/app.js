@@ -1,13 +1,12 @@
 import ReservationsListCont from './reservations/reservations-list-container';
 import React from 'react';
-import SVGUpsay from './svg-upstay';
-import { startSocketConnection } from '../../socket-subscriptions.js';
+import AppTitleComp from './app-title-component.jsx';
+import './app.scss';
 
-startSocketConnection();
 const App = () => {
 	return (
-		<div>
-			<SVGUpsay />
+		<div className="app-container">
+			<AppTitleComp />
 			<ReservationsListCont />
 		</div>
 	);

@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import Root from '@ups/components/root';
 import { getRootElement } from '@ups/utils/dom';
 import '@ups/index.scss';
+import { init } from './init.js';
 
-ReactDOM.render(<Root />, getRootElement());
+init().then(() => {
+	ReactDOM.render(<Root />, getRootElement());
 
-if (module.hot) {
-	module.hot.accept();
-}
+	if (module.hot) {
+		module.hot.accept();
+	}
+});
