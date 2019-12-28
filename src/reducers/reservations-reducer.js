@@ -13,6 +13,15 @@ export const reservationsReducer = (state = initialState, action) => {
 			newReservations[reservation.uuid] = modifyReservation(reservation);
 			return { ...state, reservations: newReservations };
 		}
+		case actionTypes.LOAD_RESERVATIONS: {
+			let reservations = action.payload;
+			let modifiedReservations = {};
+			Object.values(reservations).forEach(reservation => {
+				modifiedReservations[reservation.uuid] = modifyReservation(reservation);
+			});
+			let newReservations = { ...state.reservations, ...modifiedReservations };
+			return { ...state, reservations: newReservations };
+		}
 		default:
 			return state;
 	}

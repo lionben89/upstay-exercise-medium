@@ -19,9 +19,12 @@ serverDev(app);
 
 // socket.io server
 const server = serverIO(app, socket => {
-	reservationsService.start(reservation => {
-		reservationsService.addNewReservationToDB(reservation).then(result => {
-			socket.broadcast.emit('newReservation', result);
+	reservationsService.getAllReservationsFromDB().then(reservations => {
+		socket.emit('loadedReservations', reservations);
+		reservationsService.start(reservation => {
+			reservationsService.addNewReservationToDB(reservation).then(result => {
+				socket.broadcast.emit('newReservation', result);
+			});
 		});
 	});
 });
