@@ -21,7 +21,7 @@ serverDev(app);
 const server = serverIO(app, socket => {
 	reservationsService.start(reservation => {
 		reservationsService.addNewReservationToDB(reservation).then(result => {
-			socket.emit('newReservation', result);
+			socket.broadcast.emit('newReservation', result);
 		});
 	});
 });

@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import ReservationsListComp from './reservations-list-component.jsx';
 
 const mapStateToProps = (state, ownProps) => {
-	return { reservations: state.reservations };
+	return { reservations: state.reservationsReducer.reservations };
 };
 
-const mapDispatchToProps = {};
-
-const ReservationsListCont = connect(mapStateToProps, mapDispatchToProps)(ReservationsListComp);
+const ReservationsListCont = connect(mapStateToProps)(ReservationsListComp);
 export default ReservationsListCont;

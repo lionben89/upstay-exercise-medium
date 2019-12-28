@@ -6,6 +6,8 @@ const emitter = new EventEmitter();
 const NEW_RESERVATION_EVENT = 'newReservation';
 
 let timeoutId;
+let reservationsCache = null;
+
 const generate = () => {
 	const reservation = {
 		uuid: faker.random.uuid(),
@@ -44,11 +46,27 @@ export const stop = () => {
 };
 
 export const getAllReservationsFromDB = async () => {
-	let res = await reservationsTable.getAllReservations();
-	return res;
+	let reservations;
+	if (reservationsCache) {
+		reservations = reservationsCache;
+	} else {
+		let res = await reservationsTable.getAllReservations();
+		reservationsCache = {};
+		res &&
+			res.forEach(reservation => {
+				reservationsCache[reservation.id] = reservation;
+			});
+		reservations = reservationsCache;
+	}
+	return reservations;
 };
 
 export const addNewReservationToDB = async reservation => {
-	let res = await reservationsTable.addReservation(reservation);
+	let res;
+	if (!reservationsCache) {
+		await getAllReservationsFromDB();
+	}
+	res = await reservationsTable.addReservation(reservation);
+	reservationsCache[res.id] = res;
 	return res;
 };

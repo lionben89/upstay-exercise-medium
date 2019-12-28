@@ -1,5 +1,5 @@
-import { ADD_RESERVATION } from './actionTypes.js';
+import actionTypes from './actionTypes.js';
 export const addReservation = payload => ({
-	type: ADD_RESERVATION,
+	type: actionTypes.ADD_RESERVATION,
 	payload
 });

@@ -1,14 +1,15 @@
 import ReservationsListCont from './reservations/reservations-list-container';
 import React from 'react';
 import SVGUpsay from './svg-upstay';
-import { Container } from './app.style';
+import { startSocketConnection } from '../../socket-subscriptions.js';
 
+startSocketConnection();
 const App = () => {
 	return (
-		<Container>
+		<div>
 			<SVGUpsay />
 			<ReservationsListCont />
-		</Container>
+		</div>
 	);
 };
 

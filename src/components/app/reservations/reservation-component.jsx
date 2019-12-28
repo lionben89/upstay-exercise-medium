@@ -6,7 +6,10 @@ const ReservationComp = props => {
 	return (
 		<div>
 			<Card className="reservation-card-container">
-				<Card.Header>Featured</Card.Header>
+				<Card.Header>
+					{props.reservation.price}
+					{props.reservation.currency}
+				</Card.Header>
 				<Card.Body>
 					<Card.Title>Special title treatment</Card.Title>
 					<Card.Text>
