@@ -2,7 +2,8 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import actionTypes from '../actions/actionTypes.js';
 import * as hotelsManager from '../managers/hotels-manager.js';
 const initialState = {
-	reservations: {}
+	reservations: {},
+	uuidFilter: ''
 };
 
 export const reservationsReducer = (state = initialState, action) => {
@@ -22,6 +23,10 @@ export const reservationsReducer = (state = initialState, action) => {
 			let newReservations = { ...state.reservations, ...modifiedReservations };
 			return { ...state, reservations: newReservations };
 		}
+		case actionTypes.FILTER_RESERVATIONS_BY_UUID: {
+			let uuidFilter = action.payload;
+			return { ...state, uuidFilter };
+		}
 		default:
 			return state;
 	}
@@ -40,7 +45,8 @@ const modifyReservation = reservation => {
 		checkIn: checkInDate.toDateString(),
 		checkOut: checkOutDate.toDateString(),
 		room: reservation.room_name,
-		hotel: hotels[reservation.hotel_id]
+		hotel: hotels[reservation.hotel_id],
+		id: reservation.id
 	};
 	return modifiedReservation;
 };

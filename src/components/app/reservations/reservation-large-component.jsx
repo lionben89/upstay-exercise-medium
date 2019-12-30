@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { memo } from 'react';
 import ReservationLabelComp from './reservation-label-component.jsx';
 import './reservation-large-component.scss';
 
 const ReservationLargeComp = props => {
-	let { price, currencySymbol, checkIn, checkOut, uuid, hotel, room } = props.reservation;
+	let { id, price, currencySymbol, checkIn, checkOut, uuid, hotel, room } = props.reservation;
+	//check rendering is ok - console.log(id);
 	return (
 		<div className="reservation-card-container">
 			<div className="reservation-price">
@@ -22,4 +23,7 @@ const ReservationLargeComp = props => {
 		</div>
 	);
 };
-export default ReservationLargeComp;
+const areEqual = (prevProps, nextProps) => {
+	return prevProps.id === nextProps.id;
+};
+export default memo(ReservationLargeComp, areEqual);

@@ -3,7 +3,16 @@ import { connect } from 'react-redux';
 import ReservationsListComp from './reservations-list-component.jsx';
 
 const mapStateToProps = (state, ownProps) => {
-	return { reservations: state.reservationsReducer.reservations };
+	let filteredReservations = Object.values(state.reservationsReducer.reservations);
+	filteredReservations = filteredReservations.reverse();
+	filteredReservations = filteredReservations.filter(reservation => {
+		return (
+			reservation &&
+			reservation.uuid &&
+			reservation.uuid.startsWith(state.reservationsReducer.uuidFilter)
+		);
+	});
+	return { reservations: filteredReservations };
 };
 
 const ReservationsListCont = connect(mapStateToProps)(ReservationsListComp);
