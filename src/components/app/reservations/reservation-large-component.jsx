@@ -12,6 +12,7 @@ const ReservationLargeComp = props => {
 			<div className="reservation-price">
 				{price}
 				{currencySymbol}
+				{id}
 			</div>
 			<div className="reservation-body">
 				<ReservationLabelComp label="Check-In" value={checkIn} />
