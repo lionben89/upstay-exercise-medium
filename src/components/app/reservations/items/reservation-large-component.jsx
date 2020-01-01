@@ -10,9 +10,8 @@ const ReservationLargeComp = props => {
 	return (
 		<div className="reservation-card-container-large">
 			<div className="reservation-price">
-				{price}
+				{price.toFixed(2)}
 				{currencySymbol}
-				{id}
 			</div>
 			<div className="reservation-body">
 				<ReservationLabelComp label="Check-In" value={checkIn} />

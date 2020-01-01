@@ -10,9 +10,8 @@ const ReservationSmallComp = props => {
 	return (
 		<div className="reservation-card-container-small">
 			<div className="reservation-price">
-				{price}
+				{price.toFixed(2)}
 				{currencySymbol}
-				{id}
 			</div>
 			<div className="reservation-body">
 				<div className="reservation-row">

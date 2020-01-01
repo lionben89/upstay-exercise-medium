@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Select from 'react-select';
+import Select from 'react-styled-select';
 import '../app.scss';
 
-// eslint-disable-next-line no-unused-vars
 const CurrencySelectorComp = props => {
 	const label = 'Change currency:';
 	return (
