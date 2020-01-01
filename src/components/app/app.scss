@@ -4,20 +4,47 @@
 	.title {
 		position: relative;
 		align-self: center;
-		font-style: italic;
 		text-decoration: underline;
 		font-size: xx-large;
 	}
 	.app-header {
+		display: flex;
 		.uuid-filter {
-			border-bottom: 1px solid black;
+			border-bottom: 2px solid black;
 			border-top-width: 0px;
 			border-left-width: 0px;
 			border-right-width: 0px;
 			color: orange;
 			font-size: small;
+			width: 215px;
+			margin-top: 10px;
+			margin-left: 5%;
 		}
-		.currency-selector {
+		.currency-selector-container {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			margin-top: 10px;
+			margin-left: 5%;
+			margin-right: 5%;
+			.label {
+				font-size: small;
+				font-weight: bold;
+				align-self: center;
+			}
+			.currency-selector {
+				width: 100px;
+			}
 		}
+	}
+	.app-header-small {
+		flex-direction: column;
+	}
+	.app-header-large {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.no-reservations {
+		align-self: center;
 	}
 }

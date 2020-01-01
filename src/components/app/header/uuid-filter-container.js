@@ -5,7 +5,7 @@ import { filterReservationsByUuid } from '../../../actions/reservations-actions'
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		uuidFilter: state.uuidFilter
+		uuidFilter: state.reservationsReducer.uuidFilter
 	};
 };
 

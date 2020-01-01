@@ -1,8 +1,8 @@
-.reservation-card-container {
+.reservation-card-container-large {
 	position: relative;
 	width: 90%;
 	left: 5%;
-	border: 1px solid black;
+	border: 2px solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	display: flex;
@@ -20,5 +20,6 @@
 	.reservation-uuid {
 		font-size: x-small;
 		padding-bottom: 0.5%;
+		align-self: flex-start;
 	}
 }

@@ -8,7 +8,7 @@ const ReservationLargeComp = props => {
 	let { id, price, currencySymbol, checkIn, checkOut, uuid, hotel, room } = props.reservation;
 	//check rendering is ok - console.log(id);
 	return (
-		<div className="reservation-card-container">
+		<div className="reservation-card-container-large">
 			<div className="reservation-price">
 				{price}
 				{currencySymbol}
@@ -25,6 +25,6 @@ const ReservationLargeComp = props => {
 	);
 };
 const areEqual = (prevProps, nextProps) => {
-	return prevProps.id === nextProps.id;
+	return prevProps === nextProps;
 };
 export default memo(ReservationLargeComp, areEqual);

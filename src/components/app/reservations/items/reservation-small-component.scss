@@ -1,0 +1,30 @@
+.reservation-card-container-small {
+	position: relative;
+	width: 50%;
+	left: 5%;
+	border: 2px solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	.reservation-price {
+		font-weight: bold;
+		align-self: flex-end;
+	}
+	.reservation-body {
+		display: flex;
+		flex-direction: column;
+		//justify-content: space-around;
+		//padding-bottom: 2%;
+	}
+	.reservation-row {
+		display: flex;
+		flex-direction: row;
+		align-content: flex-start;
+	}
+	.reservation-uuid {
+		font-size: x-small;
+		padding-bottom: 0.5%;
+		align-self: center;
+	}
+}

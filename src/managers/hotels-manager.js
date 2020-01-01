@@ -14,3 +14,8 @@ export const getHotels = async () => {
 export const getHotelsSync = () => {
 	return hotelsCache;
 };
+
+export const hotelIdToHotelName = hotelId => {
+	const hotels = getHotelsSync();
+	return hotels[hotelId];
+};

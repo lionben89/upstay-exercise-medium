@@ -1,17 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import ReservationLargeComp from './reservation-large-component.jsx';
-const virtualPageSize = 400;
+import ReservationLargeComp from './items/reservation-large-component.jsx';
+import ReservationSmallComp from './items/reservation-small-component.jsx';
+import '../app.scss';
+const virtualPageSize = 100;
 
 const ReservationsListComp = props => {
 	const [currentVirtualPage, setCurrentVirtualPage] = useState(1);
-	//const [takeChange, setTakeChange] = useState(false);
 	let lastVirtualPage = Math.ceil(props.reservations.length / (virtualPageSize / 2));
 	useEffect(() => {
-		const onScroll = () => {
+		const onScroll = event => {
 			let viewPerecnt =
 				document.documentElement.scrollTop / document.documentElement.offsetHeight;
 			let lastVirtualPage = Math.ceil(props.reservations.length / (virtualPageSize / 2));
-			if (viewPerecnt > 0.96 && currentVirtualPage < lastVirtualPage) {
+			if (viewPerecnt > 0.95 && currentVirtualPage < lastVirtualPage) {
 				let nextVirtualPage = Math.min(currentVirtualPage + 1, lastVirtualPage);
 				//setTakeChange(false);
 				setCurrentVirtualPage(nextVirtualPage);
@@ -27,8 +29,8 @@ const ReservationsListComp = props => {
 			document.removeEventListener('scroll', onScroll);
 		};
 	});
-	if (props && props.reservations) {
-		let ReservationComp = ReservationLargeComp;
+	if (props && props.reservations && props.reservations.length) {
+		let ReservationComp = props.size === 'Small' ? ReservationSmallComp : ReservationLargeComp;
 		let fromVIndex = Math.max(
 			(currentVirtualPage - 1) * virtualPageSize -
 				virtualPageSize * (0.5 * (currentVirtualPage - 1)),
@@ -49,6 +51,6 @@ const ReservationsListComp = props => {
 				<ReservationComp key={reservation.id} reservation={reservation}></ReservationComp>
 			);
 		});
-	} else return <div>No Reservtions Yet!</div>;
+	} else return <div className="no-reservations">No Reservtions To Show!</div>;
 };
 export default ReservationsListComp;

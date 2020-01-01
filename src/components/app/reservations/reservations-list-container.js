@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 			reservation.uuid.startsWith(state.reservationsReducer.uuidFilter)
 		);
 	});
-	return { reservations: filteredReservations };
+	return { reservations: filteredReservations, size: ownProps.size };
 };
 
 const ReservationsListCont = connect(mapStateToProps)(ReservationsListComp);
