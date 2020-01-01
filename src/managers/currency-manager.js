@@ -27,7 +27,8 @@ export const getCurrencyExchange = async currency => {
 				data: res.data.data,
 				expirationTime: Date.now() + expirationPeriod
 			};
-		} else if (fake && !currencyExchangeCache[currency]) {
+		} else if (fake) {
+			console.log(res && res.data && res.data.message);
 			currencyExchangeCache[currency] = {
 				data: fake,
 				expirationTime: Date.now() + expirationPeriod
