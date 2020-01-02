@@ -10,7 +10,8 @@ const CurrencySelectorComp = props => {
 			<div className="label">{label}</div>
 			<Select
 				className="currency-selector"
-				value={props.selectedCurrency}
+				value={props.selectedCurrency.value}
+				placeholder={props.selectedCurrency.value}
 				onChange={props.changeCurrency}
 				options={props.currencyOptions}
 			/>

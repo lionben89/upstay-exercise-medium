@@ -9,7 +9,10 @@ const mapStateToProps = (state, ownProps) => {
 		Object.keys(state.reservationsReducer.convertionData);
 	currencyOptions = currencyOptions && currencyOptions.map(c => ({ value: c, label: c }));
 	return {
-		selectedCurrency: state.reservationsReducer.selectedCurrency,
+		selectedCurrency: {
+			value: state.reservationsReducer.selectedCurrency,
+			label: state.reservationsReducer.selectedCurrency
+		},
 		currencyOptions
 	};
 };
