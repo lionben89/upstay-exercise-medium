@@ -29,6 +29,8 @@ const ReservationSmallComp = props => {
 		</div>
 	);
 };
+
+//use memo and areEqual to prevent unneccessary rendering
 const areEqual = (prevProps, nextProps) => {
 	return prevProps === nextProps;
 };

@@ -19,9 +19,12 @@ serverDev(app);
 
 // socket.io server
 const server = serverIO(app, socket => {
+	//on socket connection (new client)
 	reservationsService.getAllReservationsFromDB().then(reservations => {
+		//send him all the reservation till now
 		socket.emit('loadedReservations', reservations);
 		reservationsService.start(reservation => {
+			//happend only once on the server, broadcast new reservations to all open sockets
 			reservationsService.addNewReservationToDB(reservation).then(result => {
 				socket.broadcast.emit('newReservation', result);
 			});

@@ -7,6 +7,8 @@ export const getAllHotelsFromDB = async () => {
 	} else {
 		let res = await hotelsTable.getAllHotels();
 		hotelsCache = {};
+
+		//save cache in object
 		res &&
 			res.forEach(hotel => {
 				hotelsCache[hotel.id] = hotel.name;

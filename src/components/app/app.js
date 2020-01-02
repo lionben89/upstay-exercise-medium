@@ -7,9 +7,12 @@ import './app.scss';
 const defaultWidth = 576;
 
 const App = () => {
+	//manage state on client width
 	const [size, setSize] = useState(
 		document.documentElement.clientWidth < defaultWidth ? 'Small' : 'Large'
 	);
+
+	//monitor resize event
 	useEffect(() => {
 		const onResize = event => {
 			let width = event.target.innerWidth;

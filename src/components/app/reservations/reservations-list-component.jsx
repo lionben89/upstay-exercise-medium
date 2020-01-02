@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import ReservationLargeComp from './items/reservation-large-component.jsx';
 import ReservationSmallComp from './items/reservation-small-component.jsx';
 import '../app.scss';
+
 const virtualPageSize = 100;
 
 const ReservationsListComp = props => {
+	//manage state on virtualization
 	const [currentVirtualPage, setCurrentVirtualPage] = useState(1);
 	let lastVirtualPage = Math.ceil(props.reservations.length / (virtualPageSize / 2));
 	useEffect(() => {
@@ -14,12 +16,12 @@ const ReservationsListComp = props => {
 				document.documentElement.scrollTop / document.documentElement.offsetHeight;
 			let lastVirtualPage = Math.ceil(props.reservations.length / (virtualPageSize / 2));
 			if (viewPerecnt > 0.95 && currentVirtualPage < lastVirtualPage) {
+				//if we are at the end of the page render next bulk
 				let nextVirtualPage = Math.min(currentVirtualPage + 1, lastVirtualPage);
-				//setTakeChange(false);
 				setCurrentVirtualPage(nextVirtualPage);
 				window.scrollTo(0, document.documentElement.offsetHeight * 0.48);
 			} else if (viewPerecnt < 0.02 && currentVirtualPage > 1) {
-				//setTakeChange(false);
+				//if we are on the begining of the page render prev bulk
 				setCurrentVirtualPage(Math.max(currentVirtualPage - 1, 1));
 				window.scrollTo(0, document.documentElement.offsetHeight * 0.54);
 			}
@@ -30,6 +32,7 @@ const ReservationsListComp = props => {
 		};
 	});
 	if (props && props.reservations && props.reservations.length) {
+		//according to size
 		let ReservationComp = props.size === 'Small' ? ReservationSmallComp : ReservationLargeComp;
 		let fromVIndex = Math.max(
 			(currentVirtualPage - 1) * virtualPageSize -

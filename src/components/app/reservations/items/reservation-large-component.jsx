@@ -5,7 +5,7 @@ import ReservationLabelComp from './reservation-label-component.jsx';
 import './reservation-large-component.scss';
 
 const ReservationLargeComp = props => {
-	let { id, price, currencySymbol, checkIn, checkOut, uuid, hotel, room } = props.reservation;
+	let { price, currencySymbol, checkIn, checkOut, uuid, hotel, room } = props.reservation;
 	//check rendering is ok - console.log(id);
 	return (
 		<div className="reservation-card-container-large">
@@ -23,6 +23,8 @@ const ReservationLargeComp = props => {
 		</div>
 	);
 };
+
+//use memo and areEqual to prevent unneccessary rendering
 const areEqual = (prevProps, nextProps) => {
 	return prevProps === nextProps;
 };

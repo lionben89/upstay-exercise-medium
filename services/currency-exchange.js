@@ -12,6 +12,7 @@ export const getCurrencyExchange = async currency => {
 	let isError = false;
 	let res;
 	if (!isCurrencyRateValid(currency)) {
+		//more then 5 min has been passed since we got last convertion data
 		res = await axios
 			.get(
 				`https://api.worldtradingdata.com/api/v1/forex?base=${currency}&api_token=${apiToken}`
@@ -21,11 +22,13 @@ export const getCurrencyExchange = async currency => {
 				console.log(error);
 			});
 		if (!isError && res && res.data && res.data.data) {
+			//update cache
 			currencyExchangeCache[currency] = {
 				data: res.data.data,
 				expirationTime: Date.now() + expirationPeriod
 			};
 		} else if (fake && !currencyExchangeCache[currency]) {
+			//if no convertion data (limited number of calls per day) send fake data for dev only!!!
 			console.log(res && res.data && res.data.message);
 			currencyExchangeCache[currency] = {
 				data: fake,
@@ -37,6 +40,7 @@ export const getCurrencyExchange = async currency => {
 };
 
 const isCurrencyRateValid = currency => {
+	//check expiration time
 	let isValid = false;
 	if (currencyExchangeCache && currencyExchangeCache[currency]) {
 		isValid = currencyExchangeCache[currency].expirationTime < Date.now() ? false : true;

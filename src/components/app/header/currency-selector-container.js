@@ -4,6 +4,7 @@ import CurrencySelectorComp from './currency-selector-component.jsx';
 import { getCurrencyExchangeAndChangeCurrency } from '../../../actions/reservations-actions.js';
 
 const mapStateToProps = (state, ownProps) => {
+	//change object to array to meet selector props
 	let currencyOptions =
 		state.reservationsReducer.convertionData &&
 		Object.keys(state.reservationsReducer.convertionData);

@@ -51,6 +51,8 @@ export const getAllReservationsFromDB = async () => {
 		reservations = reservationsCache;
 	} else {
 		let res = await reservationsTable.getAllReservations();
+
+		//save cache in object
 		reservationsCache = {};
 		res &&
 			res.forEach(reservation => {
@@ -64,6 +66,7 @@ export const getAllReservationsFromDB = async () => {
 export const addNewReservationToDB = async reservation => {
 	let res;
 	if (!reservationsCache) {
+		//get reservations from DB to prevent duplicates
 		await getAllReservationsFromDB();
 	}
 	res = await reservationsTable.addReservation(reservation);
