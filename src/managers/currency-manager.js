@@ -14,8 +14,8 @@ export const convertCurrency = (convertionData, from, to, amount) => {
 		return amount;
 	} else {
 		if (convertionData) {
-			let rate = convertionData[to];
-			return amount * rate;
+			let rate = convertionData[from] && parseFloat(convertionData[from]);
+			return amount / rate;
 		}
 	}
 };

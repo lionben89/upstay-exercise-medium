@@ -8,6 +8,9 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 150px;
+	box-shadow: 1px 1px;
+	padding: 10px;
+	box-shadow: 5px 3px 6px;
 	.reservation-price {
 		font-weight: bold;
 		align-self: flex-end;
